@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -20,6 +23,12 @@ public class Player : MonoBehaviour
     private float bufferTime;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
+
+    // Input System
+    private PlayerInput playerInput;
+    private InputAction moveAction;
+    private InputAction jumpAction;
+
     void Start()
     {
         this.rb = GetComponent<Rigidbody2D>();
@@ -28,6 +37,10 @@ public class Player : MonoBehaviour
         this.bufferTime = 0.2f;
         this.facingDirection = "Left";
         this.availableJumping = true;
+
+        this.playerInput = GetComponent<PlayerInput>();
+        this.moveAction = this.playerInput.actions["Move"];
+        this.jumpAction = this.playerInput.actions["Jump"];
     }
     void Update()
     {
@@ -41,12 +54,12 @@ public class Player : MonoBehaviour
     }
     private void Move()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        float horizontal = this.moveAction.ReadValue<Vector2>().x;
         float velocityX = this.rb.velocity.x;
 
         if (horizontal != 0)
         {
-            velocityX += horizontal * this.speed * 0.5f;
+            velocityX += horizontal * this.speed * 0.01f;
 
             if (this.rb.velocity.x <= -this.speed || this.rb.velocity.x >= this.speed)
             {
@@ -56,7 +69,7 @@ public class Player : MonoBehaviour
             this.rb.velocity = new Vector2(velocityX, this.rb.velocity.y);
 
             // Virar horizontalmente
-            this.transform.localScale = new Vector3(-horizontal * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+            this.transform.localScale = new Vector3((-horizontal > 0 ? 1 : -1) * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
         }
     }
     private void Jump()
@@ -72,14 +85,8 @@ public class Player : MonoBehaviour
         }
 
         // Gerenciar o tempo para o Jump Buffer
-        if (Input.GetButtonDown("Jump"))
-        {
-            this.jumpBufferCounter = this.bufferTime;
-        }
-        else
-        {
-            this.jumpBufferCounter = this.jumpBufferCounter < 0f ? 0f : this.jumpBufferCounter -= Time.deltaTime;
-        }
+        this.jumpBufferCounter = this.jumpBufferCounter < 0f ? 0f : this.jumpBufferCounter -= Time.deltaTime;
+        this.jumpAction.performed += context => this.jumpBufferCounter = this.bufferTime;
 
         if (this.coyoteTimeCounter > 0f && this.jumpBufferCounter > 0f && this.availableJumping)
         {
@@ -87,10 +94,12 @@ public class Player : MonoBehaviour
             StartCoroutine(JumpCooldown());
         }
 
-        if (Input.GetButtonUp("Jump") && this.rb.velocity.y > 0f)
-        {
-            this.rb.velocity = new Vector2(this.rb.velocity.x, this.rb.velocity.y * 0.5f); // Height jump
-        }
+        this.jumpAction.canceled += context => {
+            if (this.rb.velocity.y > 0f)
+            {
+                this.rb.velocity = new Vector2(this.rb.velocity.x, this.rb.velocity.y * 0.5f); // Height jump
+            }
+        };
     }
     private void Decrease()
     {
@@ -122,8 +131,8 @@ public class Player : MonoBehaviour
     }
     private void Animation()
     {
-        this.animator.SetBool("isWalking", Input.GetAxisRaw("Horizontal") != 0);
-        this.animator.SetBool("isJumping", !Physics2D.OverlapCircle(this.footTransform.position, 0.05f, this.groundLayer));
+        this.animator.SetBool("isWalking", this.moveAction.ReadValue<Vector2>().x != 0);
+        this.animator.SetBool("isJumping", !Physics2D.OverlapBox(this.footTransform.position, new Vector2(0.6f, 0.05f), 0f, this.groundLayer));
     }
     private void Particle()
     {
