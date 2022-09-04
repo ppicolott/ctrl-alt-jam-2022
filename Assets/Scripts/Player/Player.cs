@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class Player : MonoBehaviour
 {
@@ -15,7 +17,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private float speed;
-    [SerializeField][Range(0, 0.1f)] private float speedDecrease;
+    private float growthSpeed;
 
     private bool availableJumping;
     private string facingDirection;
@@ -46,11 +48,33 @@ public class Player : MonoBehaviour
     {
         Move();
         Jump();
-        Decrease();
+        Growth();
         Died();
         Gravity();
         Animation();
         Particle();
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Hot":
+                this.growthSpeed = -0.05f;
+                break;
+            case "Very Hot":
+                this.growthSpeed = -0.15f;
+                break;
+            case "Cold":
+                this.growthSpeed = 0.2f;
+                break;
+            default:
+                this.growthSpeed = 0;
+                break;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        this.growthSpeed = 0;
     }
     private void Move()
     {
@@ -101,21 +125,22 @@ public class Player : MonoBehaviour
             }
         };
     }
-    private void Decrease()
+    private void Growth()
     {
-        if(this.speedDecrease > 0)
+        if (this.growthSpeed != 0)
         {
-            if (!this.steamParticle.isPlaying)
+            if (!this.steamParticle.isPlaying && this.growthSpeed < 0)
             {
                 this.steamParticle.Play();
             }
-            this.transform.localScale -= new Vector3((this.transform.localScale.x > 0f ? this.speedDecrease : -this.speedDecrease) * Time.deltaTime, this.speedDecrease * Time.deltaTime, this.transform.localScale.z);
+            this.transform.localScale += new Vector3((this.transform.localScale.x > 0f ? this.growthSpeed : -this.growthSpeed) * Time.deltaTime, this.growthSpeed * Time.deltaTime, 0f);
+            if (this.transform.localScale.y > 1f)
+            {
+                this.transform.localScale = new Vector3((this.transform.localScale.x > 0 ? 1 : -1), 1f, 1f);
+            }
         } else
         {
-            if (this.steamParticle.isPlaying)
-            {
-                this.steamParticle.Stop();
-            }
+            this.steamParticle.Stop();
         }
     }
     private void Gravity()
