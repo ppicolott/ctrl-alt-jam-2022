@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
     {
         if(Mathf.Round(this.rb.velocity.y) == 0f)
         {
-            if (this.rb.velocity.x < 0f)
+            if (Mathf.Round(this.rb.velocity.x) < 0f)
             {
                 if (this.facingDirection == "Right")
                 {
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
                     dustParticle.Play();
                 }
             }
-            else if (this.rb.velocity.x > 0f)
+            else if (Mathf.Round(this.rb.velocity.x) > 0f)
             {
                 if (this.facingDirection == "Left")
                 {
