@@ -138,7 +138,8 @@ public class Player : MonoBehaviour
             {
                 this.transform.localScale = new Vector3((this.transform.localScale.x > 0 ? 1 : -1), 1f, 1f);
             }
-        } else
+        }
+        else
         {
             this.steamParticle.Stop();
         }
@@ -149,7 +150,7 @@ public class Player : MonoBehaviour
     }
     private void Died()
     {
-        if(this.transform.localScale.y <= 0f)
+        if (this.transform.localScale.y <= 0f)
         {
             Destroy(this.gameObject);
         }
@@ -161,7 +162,7 @@ public class Player : MonoBehaviour
     }
     private void Particle()
     {
-        if(Mathf.Round(this.rb.velocity.y) == 0f)
+        if (Mathf.Round(this.rb.velocity.y) == 0f)
         {
             if (Mathf.Round(this.rb.velocity.x) < 0f)
             {
