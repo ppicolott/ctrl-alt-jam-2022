@@ -9849,8 +9849,8 @@ GameObject:
   - component: {fileID: 8116116428384764695}
   - component: {fileID: 8116116428384764688}
   - component: {fileID: 8116116428384764683}
-  - component: {fileID: 8116116428384764682}
-  - component: {fileID: 8116116428384764693}
+  - component: {fileID: 5264889912370874550}
+  - component: {fileID: 9044647651191995612}
   - component: {fileID: 8116116428384764694}
   - component: {fileID: 8116116428384764692}
   - component: {fileID: 8116116428384764681}
@@ -9878,7 +9878,7 @@ Transform:
   - {fileID: 8116116427717306254}
   - {fileID: 1605743719}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8116116428384764688
 SpriteRenderer:
@@ -9952,8 +9952,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &8116116428384764682
-BoxCollider2D:
+--- !u!70 &5264889912370874550
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9965,21 +9965,11 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0069715977, y: 0.0029087067}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6, y: 0.73333335}
-    newSize: {x: 1.8, y: 2.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6139436, y: 0.72751594}
-  m_EdgeRadius: 0
---- !u!61 &8116116428384764693
-BoxCollider2D:
+  m_Offset: {x: 0.0063453615, y: 0.025388002}
+  m_Size: {x: 0.61269075, y: 0.71111155}
+  m_Direction: 0
+--- !u!60 &9044647651191995612
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9991,7 +9981,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.006033182, y: -0.33755165}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10001,9 +9991,13 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5770745, y: 0.060560584}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.25335866, y: -0.16019166}
+      - {x: -0.16978437, y: -0.36528146}
+      - {x: 0.16920835, y: -0.36405933}
+      - {x: 0.26500112, y: -0.15690339}
+  m_UseDelaunayMesh: 0
 --- !u!50 &8116116428384764694
 Rigidbody2D:
   serializedVersion: 4

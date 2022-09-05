@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         // Gerenciar o tempo para o salto Coyote
-        if (Physics2D.OverlapCircle(this.footTransform.position, 0.05f, this.groundLayer))
+        if (Physics2D.OverlapBox(this.footTransform.position, new Vector2(0.6f, 0.05f), 0f, this.groundLayer))
         {
             this.coyoteTimeCounter = this.bufferTime;
         }
