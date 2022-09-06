@@ -114,7 +114,8 @@ public class Player : MonoBehaviour
 
         if (this.coyoteTimeCounter > 0f && this.jumpBufferCounter > 0f && this.availableJumping)
         {
-            this.rb.velocity = new Vector2(this.rb.velocity.x, 7f);
+            float jumpVelocity = 7f * this.transform.localScale.y;
+            this.rb.velocity = new Vector2(this.rb.velocity.x, jumpVelocity < 5f ? 5f : jumpVelocity);
             StartCoroutine(JumpCooldown());
         }
 
