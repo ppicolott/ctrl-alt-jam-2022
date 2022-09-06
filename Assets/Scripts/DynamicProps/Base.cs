@@ -10,7 +10,7 @@ public class Base : MonoBehaviour
     {
         if (collision.collider.gameObject.name.Contains("Player"))
         {
-            //damage = 0.05f;
+            damage = 0.05f;
             HUD.current.damage = damage;
         }
     }
