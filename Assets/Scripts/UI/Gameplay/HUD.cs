@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
@@ -14,22 +15,27 @@ public class HUD : MonoBehaviour
     private void Start()
     {
         current = this;
+        damage = 0f;
         width = 400f;
         height = 50f;
-        damage = 0f;
         iceLife.rectTransform.sizeDelta -= new Vector2(width, height);
     }
 
     private void FixedUpdate()
     {
-        if(width > 0 && damage > 0)
+        if (width > 0 && damage > 0)
         {
             width -= damage;
         }
-        if(width < 400f && damage < 0)
+        if (width < 400f && damage < 0)
         {
             width -= damage;
         }
         iceLife.rectTransform.sizeDelta = new Vector2(width, height);
+
+        if (width <= 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+        }
     }
 }
