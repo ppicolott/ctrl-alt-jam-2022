@@ -11,9 +11,19 @@ public class Cam : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.name.Contains("Player"))
+        if(gameObject.name.Contains("Button") && ButtonPressure.current.press)
         {
-            Camera.main.orthographicSize = 7.5f;
+            if (collision.collider.gameObject.name.Contains("Player"))
+            {
+                Camera.main.orthographicSize = 7.5f;
+            }
+        }
+        if (gameObject.name.Contains("Cam"))
+        {
+            if (collision.collider.gameObject.name.Contains("Player"))
+            {
+                Camera.main.orthographicSize = 7.5f;
+            }
         }
     }
 
