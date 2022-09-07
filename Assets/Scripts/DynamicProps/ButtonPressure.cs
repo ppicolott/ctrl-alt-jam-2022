@@ -15,13 +15,13 @@ public class ButtonPressure : MonoBehaviour
         current = this;
         this.animator = GetComponent<Animator>();
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         this.animator.SetBool("Pressed", true);
         this.press = true;
         Pressed();
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         this.animator.SetBool("Pressed", false);
         this.press = false;
