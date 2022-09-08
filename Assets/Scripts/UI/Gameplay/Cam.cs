@@ -15,14 +15,14 @@ public class Cam : MonoBehaviour
         {
             if (collision.collider.gameObject.name.Contains("Player"))
             {
-                Camera.main.orthographicSize = 7.5f;
+                Camera.main.orthographicSize = 8.5f;
             }
         }
         if (gameObject.name.Contains("Cam"))
         {
             if (collision.collider.gameObject.name.Contains("Player"))
             {
-                Camera.main.orthographicSize = 7.5f;
+                Camera.main.orthographicSize = 8.5f;
             }
         }
     }

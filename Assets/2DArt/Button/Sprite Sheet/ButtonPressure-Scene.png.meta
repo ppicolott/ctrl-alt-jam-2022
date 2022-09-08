@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4fbe80565be7bb245960d6057da0a508
+guid: 02913f72a3cf6b646b5b737bc4ce3ae4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 30
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,18 +103,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -133,8 +121,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27302a864f039dc47a0710fd125ada8c
-      internalID: -830205396
+      spriteID: 814ae84932d0c574a9e3bedae8017aed
+      internalID: 56464015
       vertices: []
       indices: 
       edges: []
@@ -154,8 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a83274cc8332e543b16a62191cd915e
-      internalID: 2066216039
+      spriteID: 3b75e7444ca6183419d7c95e7a445afa
+      internalID: 1353746761
       vertices: []
       indices: 
       edges: []
@@ -175,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b7ed6357786c784ca5e0f180fee1aef
-      internalID: -800598911
+      spriteID: fdf4037c38ec23f4e899cc911819f96b
+      internalID: -1358235257
       vertices: []
       indices: 
       edges: []
@@ -192,9 +180,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ButtonPressure-Scene_1: 2066216039
-      ButtonPressure-Scene_2: -800598911
-      ButtonPressure-Scene_0: -830205396
+      ButtonPressure-Scene_1: 1353746761
+      ButtonPressure-Scene_2: -1358235257
+      ButtonPressure-Scene_0: 56464015
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
