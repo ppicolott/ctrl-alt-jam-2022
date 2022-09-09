@@ -54,7 +54,7 @@ public class MainMenuSelector : MonoBehaviour
         LanguageCheck();
 
         if (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame ||
-            Gamepad.current != null && Gamepad.current.dpad.left.wasPressedThisFrame)
+            Gamepad.current != null && Gamepad.current.dpad.up.wasPressedThisFrame)
         {
             if (selector <= 0)
             {
@@ -67,7 +67,7 @@ public class MainMenuSelector : MonoBehaviour
         }
 
         if (Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.downArrowKey.wasPressedThisFrame ||
-             Gamepad.current != null && Gamepad.current.dpad.right.wasPressedThisFrame)
+             Gamepad.current != null && Gamepad.current.dpad.down.wasPressedThisFrame)
         {
             if (selector >= 3)
             {
