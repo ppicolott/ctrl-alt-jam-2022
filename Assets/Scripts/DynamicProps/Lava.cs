@@ -68,6 +68,5 @@ public class Lava : MonoBehaviour
                 box.transform.parent = GameObject.Find("Boxes").gameObject.transform;
             }
         }
-
     }
 }
