@@ -17,8 +17,12 @@ public class Ladder : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name.Equals("LevelThree"))
         {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("LevelFour");
+        }
+        if (SceneManager.GetActiveScene().name.Equals("LevelFour"))
+        {
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
-            // UnityEngine.SceneManagement.SceneManager.LoadScene("LevelFour");
+            // UnityEngine.SceneManagement.SceneManager.LoadScene("LevelFive");
         }
     }
 }

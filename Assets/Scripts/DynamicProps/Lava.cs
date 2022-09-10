@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Lava : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class Lava : MonoBehaviour
 
     private IEnumerator DestroyWoodBox(GameObject woodBox)
     {
-        if(boxColliding)
+        if (boxColliding)
         {
             yield return new WaitForSeconds(2f);
             Destroy(woodBox);
@@ -51,10 +52,21 @@ public class Lava : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(GameObject.Find("Boxes").gameObject.transform.childCount == 0)
+        if (SceneManager.GetActiveScene().name.Equals("LevelFour"))
         {
-            GameObject box = Instantiate(newWoodBox, new Vector2(-24f, -20f), Quaternion.identity);
-            box.transform.parent = GameObject.Find("Boxes").gameObject.transform;
+            if (GameObject.Find("Boxes").gameObject != null && GameObject.Find("Boxes").gameObject.transform.childCount == 1)
+            {
+                GameObject box = Instantiate(newWoodBox, new Vector2(-18.5f, -16f), Quaternion.identity);
+                box.transform.parent = GameObject.Find("Boxes").gameObject.transform;
+            }
+        }
+        else
+        {
+            if (GameObject.Find("Boxes") != null && GameObject.Find("Boxes").gameObject.transform.childCount == 0)
+            {
+                GameObject box = Instantiate(newWoodBox, new Vector2(-24f, -20f), Quaternion.identity);
+                box.transform.parent = GameObject.Find("Boxes").gameObject.transform;
+            }
         }
     }
 }

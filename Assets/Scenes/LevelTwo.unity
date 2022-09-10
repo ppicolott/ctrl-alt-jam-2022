@@ -14516,7 +14516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2037395732
 Transform:
   m_ObjectHideFlags: 0
@@ -14578,43 +14578,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 2037395734}
-    m_ColliderPaths:
-    - - X: -192000000
-        Y: -206400000
-      - X: -197200000
-        Y: -206400000
-      - X: -197400000
-        Y: -206600000
-      - X: -197400000
-        Y: -207300000
-      - X: -197100016
-        Y: -207699984
-      - X: -196800000
-        Y: -207699984
-      - X: -196800000
-        Y: -211199984
-      - X: -192000000
-        Y: -211199984
-    - - X: -182400000
-        Y: -207699984
-      - X: -182099984
-        Y: -207699984
-      - X: -181900000
-        Y: -207599984
-      - X: -181800000
-        Y: -207300000
-      - X: -181800000
-        Y: -206600000
-      - X: -182000000
-        Y: -206400000
-      - X: -191999984
-        Y: -206400000
-      - X: -191999984
-        Y: -211199984
-      - X: -182400000
-        Y: -211199984
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: -18.240028, y: -21.119999}
