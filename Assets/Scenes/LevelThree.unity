@@ -1352,6 +1352,7 @@ GameObject:
   - component: {fileID: 1057671789}
   - component: {fileID: 1057671788}
   - component: {fileID: 1057671787}
+  - component: {fileID: 1057671792}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -1459,6 +1460,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1057671792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057671786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74995419b282a1499496f31a83dae8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSystem: 1
+  restart: 0
+  english: 0
+  portuguese: 0
+  level: 3
 --- !u!1 &1116517800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,6 +2839,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f13d72896ae224ab75eccfd34f9274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  ladderCamera: {fileID: 0}
 --- !u!4 &1386286951 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8379757017809257884, guid: 611e5f4d2342e2a43935f1a54bbb93ec, type: 3}

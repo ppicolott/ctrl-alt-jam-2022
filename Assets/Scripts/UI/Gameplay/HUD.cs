@@ -35,7 +35,7 @@ public class HUD : MonoBehaviour
 
         if (width <= 0)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOver");
         }
     }
 }
