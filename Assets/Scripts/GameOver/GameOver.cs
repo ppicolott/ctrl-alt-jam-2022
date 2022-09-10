@@ -2,36 +2,103 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
     public static bool audioPlaying = true;
-    public GameObject xButtonOutline;
     public float timerKnob = 0.5f;
 
+    [Space(10)]
+    [Header("Button")]
+    [Space(5)]
+    public GameObject tryAgainButton;
+    public GameObject quitButton;
+
+    [Space(10)]
+    [Header("Language")]
+    [Space(5)]
+    public TextMeshProUGUI titleText;
+    public TextMeshProUGUI tryAgainText;
+    public TextMeshProUGUI quitText;
+
+    private int selector;
+
+    void Start()
+    {
+        selector = 0;
+    }
     void Update()
     {
-        if(Keyboard.current.anyKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame || Mouse.current.rightButton.wasPressedThisFrame ||
-            Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame || Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame)
+        LanguageCheck();
+
+        if (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame ||
+            Gamepad.current != null && Gamepad.current.dpad.up.wasPressedThisFrame)
         {
-            ExitToMainMenu();
+            if (selector <= 0)
+            {
+                selector = 3;
+            }
+            else
+            {
+                selector -= 1;
+            }
         }
 
-        timerKnob -= Time.deltaTime;
-
-        if (timerKnob <= 0)
+        if (Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.downArrowKey.wasPressedThisFrame ||
+             Gamepad.current != null && Gamepad.current.dpad.down.wasPressedThisFrame)
         {
-            xButtonOutline.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            if (selector >= 1)
+            {
+                selector = 0;
+            }
+            else
+            {
+                selector += 1;
+            }
         }
-        if (timerKnob <= -0.5f)
+
+        if (selector == 0)
         {
-            xButtonOutline.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
-            timerKnob = 0.5f;
+            EventSystem.current.SetSelectedGameObject(tryAgainButton);
+            if (Keyboard.current.enterKey.wasPressedThisFrame || Keyboard.current.numpadEnterKey.wasPressedThisFrame ||
+                Keyboard.current.spaceKey.wasPressedThisFrame || Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                Restart();
+            }
+        }
+        else if (selector == 1)
+        {
+            EventSystem.current.SetSelectedGameObject(quitButton);
+            if (Keyboard.current.enterKey.wasPressedThisFrame || Keyboard.current.numpadEnterKey.wasPressedThisFrame ||
+                Keyboard.current.spaceKey.wasPressedThisFrame || Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                ExitToMainMenu();
+            }
         }
     }
-
+    public void LanguageCheck()
+    {
+        if (AudioLangController.current.english)
+        {
+            titleText.text = "Game Over";
+            tryAgainText.text = "Try again";
+            quitText.text = "Back to Main Menu";
+        }
+        else if (AudioLangController.current.portuguese)
+        {
+            titleText.text = "Fim de Jogo";
+            tryAgainText.text = "Tente novamente";
+            quitText.text = "Voltar ao Menu Inicial";
+        }
+    }
+    public void Restart()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(AudioLangController.current.level);
+    }
     public void ExitToMainMenu()
     {
         if (AudioLangController.current.audioSystem)

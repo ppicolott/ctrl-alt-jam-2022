@@ -12,6 +12,8 @@ public class AudioLangController : MonoBehaviour
     public bool portuguese;
     public bool spanish;
 
+    public int level = 1;
+
     private void Awake()
     {
         current = this;
