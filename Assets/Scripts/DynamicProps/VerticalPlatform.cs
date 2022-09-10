@@ -17,6 +17,10 @@ public class VerticalPlatform : MonoBehaviour
         {
             speed = 2.5f;
         }
+        else if (SceneManager.GetActiveScene().name.Equals("LevelFive"))
+        {
+            speed = 2.5f;
+        }
         else
         {
             speed = 1f;
@@ -39,6 +43,16 @@ public class VerticalPlatform : MonoBehaviour
         {
             max = 1.25f;
             min = -0.5f;
+        }
+        if (SceneManager.GetActiveScene().name.Equals("LevelFive") && gameObject.name.Contains("First"))
+        {
+            max = 3.5f;
+            min = -1.5f;
+        }
+        if (SceneManager.GetActiveScene().name.Equals("LevelFive") && gameObject.name.Contains("Second"))
+        {
+            max = 2.3f;
+            min = -1f;
         }
 
         if (transform.position.y > max)

@@ -144,7 +144,8 @@ public class MainMenuSelector : MonoBehaviour
     public void NewGameButton()
     {
         selector = 0;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Intro");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("LevelOne");
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Intro");
     }
 
     public void SettingsButton()

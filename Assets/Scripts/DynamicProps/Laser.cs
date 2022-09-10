@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+using UnityEngine.SceneManagement;
 
 public class Laser : MonoBehaviour
 {
@@ -11,30 +11,52 @@ public class Laser : MonoBehaviour
     private RaycastHit2D[] targetPoint;
     private float distance;
     private float levelFourAngle;
+    private float levelFiveAngle;
 
     private void Start()
     {
         lineRenderer.sortingOrder = -1;
         distance = 7.5f;
         levelFourAngle = 1.65f;
+        levelFiveAngle = 4.5f;
     }
 
     private void FixedUpdate()
     {
-        if(ButtonPressure.current.fireLaser)
+        if (SceneManager.GetActiveScene().name.Equals("LevelFour"))
         {
-            StartCoroutine(LaserBeam());
-        }
-        else
-        {
-            ButtonPressure.current.NotPressedByLaser();
+            if (GameObject.Find("ButtonPressure").GetComponent<ButtonPressure>().press)
+            {
+                FireLaser();
+            }
+            if (!GameObject.Find("ButtonPressure").GetComponent<ButtonPressure>().press)
+            {
+                ButtonPressure.current.NotPressedByLaser();
+                lineRenderer.enabled = false;
+            }
         }
 
+        if (SceneManager.GetActiveScene().name.Equals("LevelFive"))
+        {
+            if (GameObject.Find("ButtonPressure (1)").GetComponent<ButtonPressure>().press)
+            {
+                FireLaser();
+            }
+            if (!GameObject.Find("ButtonPressure (1)").GetComponent<ButtonPressure>().press)
+            {
+                ButtonPressure.current.NotPressedByLaser();
+                lineRenderer.enabled = false;
+            }
+        }
     }
 
-    public IEnumerator LaserBeam()
+    private void FireLaser()
     {
+        lineRenderer.enabled = true;
+
         targetPoint = Physics2D.RaycastAll(firePoint.position, firePoint.up);
+
+        lineRenderer.sortingOrder = 5;
 
         for (int i = 0; i < targetPoint.Length; i++)
         {
@@ -42,36 +64,33 @@ public class Laser : MonoBehaviour
 
             if (hit)
             {
-                lineRenderer.sortingOrder = 3;
-                lineRenderer.SetPosition(0, firePoint.position);
-                lineRenderer.SetPosition(1, new Vector2(firePoint.position.x + (distance * -1), firePoint.position.y + levelFourAngle));
+                if (SceneManager.GetActiveScene().name.Equals("LevelFour"))
+                {
+                    lineRenderer.SetPosition(0, firePoint.position);
+                    lineRenderer.SetPosition(1, new Vector2(firePoint.position.x + (distance * -1), firePoint.position.y + levelFourAngle));
 
-                if(hit.collider.gameObject.name.Contains("Box") || hit.collider.gameObject.name.Contains("Cube"))
+                    if (hit.collider.gameObject.name.Equals("ButtonPressure (1)"))
+                    {
+                        ButtonPressure.current.PressedByLaser();
+                    }
+                }
+
+                if (SceneManager.GetActiveScene().name.Equals("LevelFive"))
+                {
+                    lineRenderer.SetPosition(0, firePoint.position);
+                    lineRenderer.SetPosition(1, new Vector2(firePoint.position.x + (distance), firePoint.position.y + levelFiveAngle));
+
+                    if (hit.collider.gameObject.name.Equals("ButtonPressure (2)"))
+                    {
+                        ButtonPressure.current.PressedByLaser();
+                    }
+                }
+
+                if (hit.collider.gameObject.name.Contains("Box") || hit.collider.gameObject.name.Contains("Cube"))
                 {
                     Destroy(hit.collider.gameObject);
                 }
-                if(hit.collider.gameObject.name.Equals("ButtonPressure (1)"))
-                {
-                    ButtonPressure.current.PressedByLaser();
-                }
             }
-            else
-            {
-                lineRenderer.SetPosition(0, firePoint.position);
-                lineRenderer.SetPosition(1, new Vector2(firePoint.position.x + (distance * -1), firePoint.position.y + levelFourAngle));
-            }
-
-            lineRenderer.enabled = true;
-
-            yield return new WaitForSeconds(0.05f);
-
-            lineRenderer.enabled = false;
         }
-
     }
-
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     StartCoroutine(LaserBeam());
-    // }
 }

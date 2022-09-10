@@ -7,22 +7,27 @@ public class Ladder : MonoBehaviour
 {
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (SceneManager.GetActiveScene().name.Equals("LevelOne"))
+        switch (AudioLangController.current.level)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("LevelTwo");
-        }
-        if (SceneManager.GetActiveScene().name.Equals("LevelTwo"))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("LevelThree");
-        }
-        if (SceneManager.GetActiveScene().name.Equals("LevelThree"))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("LevelFour");
-        }
-        if (SceneManager.GetActiveScene().name.Equals("LevelFour"))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
-            // UnityEngine.SceneManagement.SceneManager.LoadScene("LevelFive");
+            case 1:
+                SceneManager.LoadScene("LevelTwo");
+                break;
+            case 2:
+                SceneManager.LoadScene("LevelThree");
+                break;
+            case 3:
+                SceneManager.LoadScene("LevelFour");
+                break;
+            case 4:
+                SceneManager.LoadScene("LevelFive");
+                break;
+            case 5:
+                SceneManager.LoadScene("Victory");
+                //SceneManager.LoadScene("LevelSix");
+                break;
+            case 6:
+                SceneManager.LoadScene("Victory");
+                break;
         }
     }
 }

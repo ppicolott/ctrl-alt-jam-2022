@@ -60,7 +60,15 @@ public class Lava : MonoBehaviour
                 box.transform.parent = GameObject.Find("Boxes").gameObject.transform;
             }
         }
-        else
+        if (SceneManager.GetActiveScene().name.Equals("LevelFive"))
+        {
+            if (GameObject.Find("Boxes").gameObject != null && GameObject.Find("Boxes").gameObject.transform.childCount == 0)
+            {
+                GameObject box = Instantiate(newWoodBox, new Vector2(-17f, -16f), Quaternion.identity);
+                box.transform.parent = GameObject.Find("Boxes").gameObject.transform;
+            }
+        }
+        if(!SceneManager.GetActiveScene().name.Equals("LevelFour") || !SceneManager.GetActiveScene().name.Equals("LevelFive"))
         {
             if (GameObject.Find("Boxes") != null && GameObject.Find("Boxes").gameObject.transform.childCount == 0)
             {

@@ -97,7 +97,27 @@ public class GameOver : MonoBehaviour
     }
     public void Restart()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(AudioLangController.current.level);
+        switch (AudioLangController.current.level)
+        {
+            case 1:
+                SceneManager.LoadScene("LevelOne");
+                break;
+            case 2:
+                SceneManager.LoadScene("LevelTwo");
+                break;
+            case 3:
+                SceneManager.LoadScene("LevelThree");
+                break;
+            case 4:
+                SceneManager.LoadScene("LevelFour");
+                break;
+            case 5:
+                SceneManager.LoadScene("LevelFive");
+                break;
+            case 6:
+                SceneManager.LoadScene("LevelSix");
+                break;
+        }
     }
     public void ExitToMainMenu()
     {
@@ -110,6 +130,6 @@ public class GameOver : MonoBehaviour
             audioPlaying = true;
         }
         AudioLangController.current.restart = true;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }

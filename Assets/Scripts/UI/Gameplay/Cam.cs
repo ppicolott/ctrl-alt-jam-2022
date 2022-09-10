@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Cam : MonoBehaviour
 {
+    public GameObject mainCamera;
+    public GameObject ladderCamera;
+
     void Start()
     {
         Camera.main.orthographicSize = 3f;
@@ -11,13 +15,35 @@ public class Cam : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(gameObject.name.Contains("Button") && ButtonPressure.current.press)
+        if (SceneManager.GetActiveScene().name.Equals("LevelFive"))
         {
-            if (collision.collider.gameObject.name.Contains("Player"))
+            if (gameObject.name.Equals("ButtonPressure") && gameObject.GetComponent<ButtonPressure>().press)
             {
-                Camera.main.orthographicSize = 8.5f;
+                if (collision.collider.gameObject.name.Contains("Player"))
+                {
+                    ladderCamera.SetActive(true);
+                    mainCamera.SetActive(false);
+                }
+            }
+            if (gameObject.name.Equals("ButtonPressure (1)") && gameObject.GetComponent<ButtonPressure>().press)
+            {
+                if (collision.collider.gameObject.name.Contains("Player"))
+                {
+                    Camera.main.orthographicSize = 8.5f;
+                }
             }
         }
+        else
+        {
+            if (gameObject.name.Contains("Button") && gameObject.GetComponent<ButtonPressure>().press)
+            {
+                if (collision.collider.gameObject.name.Contains("Player"))
+                {
+                    Camera.main.orthographicSize = 8.5f;
+                }
+            }
+        }
+
         if (gameObject.name.Contains("Cam"))
         {
             if (collision.collider.gameObject.name.Contains("Player"))
@@ -29,6 +55,23 @@ public class Cam : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Camera.main.orthographicSize = 3f;
+        if (SceneManager.GetActiveScene().name.Equals("LevelFive"))
+        {
+            if (gameObject.name.Equals("ButtonPressure") && gameObject.GetComponent<ButtonPressure>().press)
+            {
+                mainCamera.SetActive(true);
+                ladderCamera.SetActive(false);
+                Camera.main.orthographicSize = 3f;
+            }
+            else
+            {
+                Camera.main.orthographicSize = 3f;
+            }
+        }
+        else
+        {
+            Camera.main.orthographicSize = 3f;
+        }
+
     }
 }

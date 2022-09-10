@@ -150,10 +150,6 @@ public class Victory : MonoBehaviour
         {
             victoryText.text = "Vitória!";
         }
-        if (AudioLangController.current.spanish)
-        {
-            victoryText.text = "Victoria!";
-        }
     }
 
     public void ExitToMainMenu()
