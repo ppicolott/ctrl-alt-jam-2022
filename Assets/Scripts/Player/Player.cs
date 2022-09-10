@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class Player : MonoBehaviour
 {
@@ -35,7 +32,7 @@ public class Player : MonoBehaviour
     {
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
-        this.speed = 3f;
+        this.speed = 18f; // 3f;
         this.bufferTime = 0.2f;
         this.facingDirection = "Left";
         this.availableJumping = true;
@@ -44,7 +41,7 @@ public class Player : MonoBehaviour
         this.moveAction = this.playerInput.actions["Move"];
         this.jumpAction = this.playerInput.actions["Jump"];
     }
-    void Update()
+    void FixedUpdate() // Update()
     {
         Move();
         Jump();
@@ -151,10 +148,10 @@ public class Player : MonoBehaviour
     }
     private void Died()
     {
-        if (this.transform.localScale.y <= 0f)
-        {
-            Destroy(this.gameObject);
-        }
+        // if (this.transform.localScale.y <= 0f)
+        // {
+        //     Destroy(this.gameObject);
+        // }
     }
     private void Animation()
     {

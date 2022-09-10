@@ -32,7 +32,7 @@ public class HorizontalPlatform : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name.Equals("LevelTwo") && gameObject.name.Contains("First"))
         {
-            max = 1.8f;
+            max = 2.5f;
             min = 0f;
         }
         if (SceneManager.GetActiveScene().name.Equals("LevelFour") && gameObject.name.Contains("First"))
