@@ -13,6 +13,7 @@ public class Laser : MonoBehaviour
     private float levelFourAngle;
     private float levelFiveAngle;
 
+
     private void Start()
     {
         lineRenderer.sortingOrder = -1;
@@ -28,11 +29,15 @@ public class Laser : MonoBehaviour
             if (GameObject.Find("ButtonPressure").GetComponent<ButtonPressure>().press)
             {
                 FireLaser();
+                InvokeRepeating("LineTwinkle", 0.02f, 0.02f);
+                LaserSFX.current.laserAudio.gameObject.SetActive(true);
             }
             if (!GameObject.Find("ButtonPressure").GetComponent<ButtonPressure>().press)
             {
                 ButtonPressure.current.NotPressedByLaser();
+                CancelInvoke();
                 lineRenderer.enabled = false;
+                LaserSFX.current.laserAudio.gameObject.SetActive(false);
             }
         }
 
@@ -41,19 +46,21 @@ public class Laser : MonoBehaviour
             if (GameObject.Find("ButtonPressure (1)").GetComponent<ButtonPressure>().press)
             {
                 FireLaser();
+                InvokeRepeating("LineTwinkle", 0.02f, 0.02f);
+                LaserSFX.current.laserAudio.gameObject.SetActive(true);
             }
             if (!GameObject.Find("ButtonPressure (1)").GetComponent<ButtonPressure>().press)
             {
                 ButtonPressure.current.NotPressedByLaser();
+                CancelInvoke();
                 lineRenderer.enabled = false;
+                LaserSFX.current.laserAudio.gameObject.SetActive(false);
             }
         }
     }
 
     private void FireLaser()
     {
-        lineRenderer.enabled = true;
-
         targetPoint = Physics2D.RaycastAll(firePoint.position, firePoint.up);
 
         lineRenderer.sortingOrder = 5;
@@ -91,6 +98,14 @@ public class Laser : MonoBehaviour
                     Destroy(hit.collider.gameObject);
                 }
             }
+        }
+    }
+
+    private void LineTwinkle()
+    {
+        if(lineRenderer != null)
+        {
+            lineRenderer.enabled =! lineRenderer.enabled;
         }
     }
 }

@@ -3,11 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform footTransform;
+	
+    [Space(10)]
+    [Header("Particles")]
+    [Space(5)] 
     [SerializeField] private ParticleSystem dustParticle;
     [SerializeField] private ParticleSystem steamParticle;
 
@@ -68,6 +73,11 @@ public class Player : MonoBehaviour
                 this.growthSpeed = 0;
                 break;
         }
+
+        if (collision.gameObject.name.Equals("Ladder"))
+        {
+            LadderSFX.current.ladderSFX.Play();
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -117,7 +127,7 @@ public class Player : MonoBehaviour
         }
 
         this.jumpAction.canceled += context => {
-            if (this.rb.velocity.y > 0f)
+            if (this.rb && this.rb.velocity.y > 0f)
             {
                 this.rb.velocity = new Vector2(this.rb.velocity.x, this.rb.velocity.y * 0.5f); // Height jump
             }
@@ -131,16 +141,22 @@ public class Player : MonoBehaviour
             {
                 this.steamParticle.Play();
             }
-            this.transform.localScale += new Vector3((this.transform.localScale.x > 0f ? this.growthSpeed : -this.growthSpeed) * Time.deltaTime, this.growthSpeed * Time.deltaTime, 0f);
-            if (this.transform.localScale.y > 1f)
+            ManagerStates.life += this.growthSpeed * Time.deltaTime;
+
+            if(ManagerStates.life >= 1f)
             {
-                this.transform.localScale = new Vector3((this.transform.localScale.x > 0 ? 1 : -1), 1f, 1f);
+                ManagerStates.life = 1f;
             }
+            else if(ManagerStates.life <= 0f)
+            {
+                ManagerStates.life = 0f; 
+			}
         }
         else
         {
             this.steamParticle.Stop();
         }
+        this.transform.localScale = new Vector3((this.transform.localScale.x > 0f ? ManagerStates.life : -ManagerStates.life), ManagerStates.life, 1f); 
     }
     private void Gravity()
     {
@@ -148,10 +164,11 @@ public class Player : MonoBehaviour
     }
     private void Died()
     {
-        // if (this.transform.localScale.y <= 0f)
-        // {
-        //     Destroy(this.gameObject);
-        // }
+        if (ManagerStates.life <= 0f)
+        {
+            ManagerStates.life = 1f;
+			SceneManager.LoadScene("GameOver");
+        }
     }
     private void Animation()
     {

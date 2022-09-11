@@ -39,15 +39,25 @@ public class Lava : MonoBehaviour
     {
         if (boxColliding)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.8f);
+            woodBox.gameObject.transform.Find("boxExplodingSFX").gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
             Destroy(woodBox);
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.name.Contains("Player"))
+        {
+            PlayerSFX.current.boilSFX.Play();
+        }
+    }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         HUD.current.damage = 0;
+        PlayerSFX.current.boilSFX.Stop();
     }
 
     private void FixedUpdate()
@@ -68,7 +78,7 @@ public class Lava : MonoBehaviour
                 box.transform.parent = GameObject.Find("Boxes").gameObject.transform;
             }
         }
-        if(!SceneManager.GetActiveScene().name.Equals("LevelFour") || !SceneManager.GetActiveScene().name.Equals("LevelFive"))
+        if (!SceneManager.GetActiveScene().name.Equals("LevelFour") || !SceneManager.GetActiveScene().name.Equals("LevelFive"))
         {
             if (GameObject.Find("Boxes") != null && GameObject.Find("Boxes").gameObject.transform.childCount == 0)
             {
