@@ -8,6 +8,7 @@ public class PlayerSFX : MonoBehaviour
     public static PlayerSFX current;
     public AudioSource jumpSFX;
     public AudioSource boilSFX;
+    public AudioSource healSFX;
 
     private void Awake()
     {

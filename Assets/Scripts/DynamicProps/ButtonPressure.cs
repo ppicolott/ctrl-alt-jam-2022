@@ -36,7 +36,7 @@ public class ButtonPressure : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name.Equals("LevelThree"))
         {
-            GameObject.Find("Door").gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("Door").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
             GameObject.Find("Door").gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
 
@@ -44,12 +44,12 @@ public class ButtonPressure : MonoBehaviour
         {
             if (gameObject.name.Equals("ButtonPressure"))
             {
-                GameObject.Find("Door (1)").gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                GameObject.Find("Door (1)").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
                 GameObject.Find("Door (1)").gameObject.GetComponent<BoxCollider2D>().enabled = false;
             }
             if (gameObject.name.Equals("ButtonPressure (2)"))
             {
-                GameObject.Find("Door").gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                GameObject.Find("Door").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
                 GameObject.Find("Door").gameObject.GetComponent<BoxCollider2D>().enabled = false;
             }
         }
@@ -58,15 +58,15 @@ public class ButtonPressure : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name.Equals("LevelThree"))
         {
-            GameObject.Find("Door").gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            GameObject.Find("Door").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
             GameObject.Find("Door").gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
 
         if (SceneManager.GetActiveScene().name.Equals("LevelFive"))
         {
-            GameObject.Find("Door (1)").gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            GameObject.Find("Door (1)").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
             GameObject.Find("Door (1)").gameObject.GetComponent<BoxCollider2D>().enabled = true;
-            GameObject.Find("Door").gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            GameObject.Find("Door").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
             GameObject.Find("Door").gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
 
@@ -81,14 +81,14 @@ public class ButtonPressure : MonoBehaviour
         {
             GameObject.Find("ButtonPressure (1)").gameObject.GetComponent<ButtonPressure>().animator.SetBool("Pressed", true);
             GameObject.Find("ButtonPressure (1)").gameObject.GetComponent<ButtonPressure>().press = true;
-            GameObject.Find("Door").gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("Door").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
             GameObject.Find("Door").gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
         if (SceneManager.GetActiveScene().name.Equals("LevelFive"))
         {
             GameObject.Find("ButtonPressure (2)").gameObject.GetComponent<ButtonPressure>().animator.SetBool("Pressed", true);
             GameObject.Find("ButtonPressure (2)").gameObject.GetComponent<ButtonPressure>().press = true;
-            GameObject.Find("Door").gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("Door").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
             GameObject.Find("Door").gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
@@ -99,14 +99,14 @@ public class ButtonPressure : MonoBehaviour
         {
             GameObject.Find("ButtonPressure (1)").gameObject.GetComponent<ButtonPressure>().animator.SetBool("Pressed", false);
             GameObject.Find("ButtonPressure (1)").gameObject.GetComponent<ButtonPressure>().press = false;
-            GameObject.Find("Door").gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            GameObject.Find("Door").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
             GameObject.Find("Door").gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
         if (SceneManager.GetActiveScene().name.Equals("LevelFive"))
         {
             GameObject.Find("ButtonPressure (2)").gameObject.GetComponent<ButtonPressure>().animator.SetBool("Pressed", false);
             GameObject.Find("ButtonPressure (2)").gameObject.GetComponent<ButtonPressure>().press = false;
-            GameObject.Find("Door").gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            GameObject.Find("Door").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
             GameObject.Find("Door").gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
 

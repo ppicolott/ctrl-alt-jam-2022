@@ -95,6 +95,11 @@ public class Laser : MonoBehaviour
 
                 if (hit.collider.gameObject.name.Contains("Box") || hit.collider.gameObject.name.Contains("Cube"))
                 {
+                    GameObject woodBox = hit.collider.gameObject;
+                    StartCoroutine(DestroyWoodBox(woodBox));
+                }
+                if (hit.collider.gameObject.name.Contains("Cube"))
+                {
                     Destroy(hit.collider.gameObject);
                 }
             }
@@ -107,5 +112,13 @@ public class Laser : MonoBehaviour
         {
             lineRenderer.enabled =! lineRenderer.enabled;
         }
+    }
+
+    private IEnumerator DestroyWoodBox(GameObject woodBox)
+    {
+        yield return new WaitForSeconds(1.8f);
+        woodBox.gameObject.transform.Find("boxExplodingSFX").gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        Destroy(woodBox);
     }
 }

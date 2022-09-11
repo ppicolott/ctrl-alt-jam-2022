@@ -159,10 +159,12 @@ public class SettingsSelector : MonoBehaviour
             if (AudioLangController.current.audioSystem)
             {
                 audioText.text = "On";
+                AudioListener.volume = 1;
             }
             else if (!AudioLangController.current.audioSystem)
             {
                 audioText.text = "Off";
+                AudioListener.volume = 0;
             }
             backText.text = "Back to Main Menu";
         }
@@ -176,10 +178,12 @@ public class SettingsSelector : MonoBehaviour
             if (AudioLangController.current.audioSystem)
             {
                 audioText.text = "Ligado";
+                AudioListener.volume = 1;
             }
             else if (!AudioLangController.current.audioSystem)
             {
                 audioText.text = "Desligado";
+                AudioListener.volume = 0;
             }
             backText.text = "Voltar ao Menu Inicial";
         }
@@ -211,7 +215,6 @@ public class SettingsSelector : MonoBehaviour
 
     public void LanguageButton()
     {
-        Debug.Log(AudioLangController.current.portuguese);
         if (AudioLangController.current.english)
         {
             AudioLangController.current.english = false;

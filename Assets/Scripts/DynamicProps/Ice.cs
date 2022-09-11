@@ -11,11 +11,13 @@ public class Ice : MonoBehaviour
         if (collision.collider.gameObject.name.Contains("Player"))
         {
             HUD.current.damage = damage;
+            PlayerSFX.current.healSFX.Play();
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         HUD.current.damage = 0;
+        PlayerSFX.current.healSFX.Stop();
     }
 }
