@@ -69,31 +69,32 @@ public class SettingsSelector : MonoBehaviour
     {
         CheckLanguage();
 
-        if (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame ||
-            Gamepad.current != null && Gamepad.current.dpad.up.wasPressedThisFrame)
+        if (canvasSettings.activeInHierarchy && !gameControlsScreen.activeInHierarchy)
         {
-            //MusicSFXControl.currentMSFX.SFXPlay();
-            if (selector <= 0)
+            if (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame ||
+                Gamepad.current != null && Gamepad.current.dpad.up.wasPressedThisFrame)
             {
-                selector = 3;
+                if (selector <= 0)
+                {
+                    selector = 3;
+                }
+                else
+                {
+                    selector -= 1;
+                }
             }
-            else
-            {
-                selector -= 1;
-            }
-        }
 
-        if (Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.downArrowKey.wasPressedThisFrame ||
-             Gamepad.current != null && Gamepad.current.dpad.down.wasPressedThisFrame)
-        {
-            //MusicSFXControl.currentMSFX.SFXPlay();
-            if (selector >= 3)
+            if (Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.downArrowKey.wasPressedThisFrame ||
+                 Gamepad.current != null && Gamepad.current.dpad.down.wasPressedThisFrame)
             {
-                selector = 0;
-            }
-            else
-            {
-                selector += 1;
+                if (selector >= 3)
+                {
+                    selector = 0;
+                }
+                else
+                {
+                    selector += 1;
+                }
             }
         }
 
@@ -149,38 +150,38 @@ public class SettingsSelector : MonoBehaviour
 
     public void CheckLanguage()
     {
-        if (AudioLangController.current.english)
+        if (GameplayController.english)
         {
             title.text = "Settings";
             gameControlsText.text = "Game Controls";
             languageText.text = "English";
             languageTitleText.text = "Language";
             audioTitleText.text = "Audio";
-            if (AudioLangController.current.audioSystem)
+            if (AudioController.current.audioSystem)
             {
                 audioText.text = "On";
                 AudioListener.volume = 1;
             }
-            else if (!AudioLangController.current.audioSystem)
+            else if (!AudioController.current.audioSystem)
             {
                 audioText.text = "Off";
                 AudioListener.volume = 0;
             }
             backText.text = "Back to Main Menu";
         }
-        else if (AudioLangController.current.portuguese)
+        else if (GameplayController.portuguese)
         {
             title.text = "Opções";
             gameControlsText.text = "Controles do Jogo";
             languageText.text = "Português";
             languageTitleText.text = "Linguagem";
             audioTitleText.text = "Áudio";
-            if (AudioLangController.current.audioSystem)
+            if (AudioController.current.audioSystem)
             {
                 audioText.text = "Ligado";
                 AudioListener.volume = 1;
             }
-            else if (!AudioLangController.current.audioSystem)
+            else if (!AudioController.current.audioSystem)
             {
                 audioText.text = "Desligado";
                 AudioListener.volume = 0;
@@ -194,14 +195,14 @@ public class SettingsSelector : MonoBehaviour
         gameControlsButton.SetActive(false);
         gameControlsScreen.SetActive(true);
         settingsScreen.SetActive(false);
-        if (AudioLangController.current.english)
+        if (GameplayController.english)
         {
             titleControl.text = "Controls";
             jumpText.text = "Jump";
             moveText.text = "Move";
             backControlText.text = "Back to Settings Menu";
         }
-        else if(AudioLangController.current.portuguese)
+        else if(GameplayController.portuguese)
         {
             titleControl.text = "Controles";
             jumpText.text = "Pular";
@@ -215,28 +216,28 @@ public class SettingsSelector : MonoBehaviour
 
     public void LanguageButton()
     {
-        if (AudioLangController.current.english)
+        if (GameplayController.english)
         {
-            AudioLangController.current.english = false;
-            AudioLangController.current.portuguese = true;
+            GameplayController.english = false;
+            GameplayController.portuguese = true;
         }
-        else if (AudioLangController.current.portuguese)
+        else if (GameplayController.portuguese)
         {
-            AudioLangController.current.english = true;
-            AudioLangController.current.portuguese = false;
+            GameplayController.english = true;
+            GameplayController.portuguese = false;
         }
     }
 
     public void AudioButton()
     {
         EventSystem.current.SetSelectedGameObject(audioButton);
-        if(AudioLangController.current.audioSystem)
+        if(AudioController.current.audioSystem)
         {
-            AudioLangController.current.audioSystem = false;
+            AudioController.current.audioSystem = false;
         }
-        else if(!AudioLangController.current.audioSystem)
+        else if(!AudioController.current.audioSystem)
         {
-            AudioLangController.current.audioSystem = true;
+            AudioController.current.audioSystem = true;
         }
     }
 

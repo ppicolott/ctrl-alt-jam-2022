@@ -53,33 +53,36 @@ public class MainMenuSelector : MonoBehaviour
     {
         LanguageCheck();
 
-        if (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame ||
-            Gamepad.current != null && Gamepad.current.dpad.up.wasPressedThisFrame)
+        if (canvasMainMenu.activeInHierarchy && !creditsImage.activeInHierarchy)
         {
-            if (selector <= 0)
+            if (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame ||
+                Gamepad.current != null && Gamepad.current.dpad.up.wasPressedThisFrame)
             {
-                selector = 3;
+                if (selector <= 0)
+                {
+                    selector = 3;
+                }
+                else
+                {
+                    selector -= 1;
+                }
             }
-            else
+
+            if (Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.downArrowKey.wasPressedThisFrame ||
+                 Gamepad.current != null && Gamepad.current.dpad.down.wasPressedThisFrame)
             {
-                selector -= 1;
+                if (selector >= 3)
+                {
+                    selector = 0;
+                }
+                else
+                {
+                    selector += 1;
+                }
             }
         }
 
-        if (Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.downArrowKey.wasPressedThisFrame ||
-             Gamepad.current != null && Gamepad.current.dpad.down.wasPressedThisFrame)
-        {
-            if (selector >= 3)
-            {
-                selector = 0;
-            }
-            else
-            {
-                selector += 1;
-            }
-        }
-
-        if(selector == 0)
+        if (selector == 0)
         {
             EventSystem.current.SetSelectedGameObject(newGameButton);
             if (Keyboard.current.enterKey.wasPressedThisFrame || Keyboard.current.numpadEnterKey.wasPressedThisFrame ||
@@ -125,14 +128,14 @@ public class MainMenuSelector : MonoBehaviour
 
     public void LanguageCheck()
     {
-        if (AudioLangController.current.english)
+        if (GameplayController.english)
         {
             newGameText.text = "New Game - Demo";
             settingsText.text = "Settings";
             creditsText.text = "Credits";
             exitText.text = "Exit";
         }
-        else if(AudioLangController.current.portuguese)
+        else if (GameplayController.portuguese)
         {
             newGameText.text = "Novo Jogo - Demo";
             settingsText.text = "Configurações";
@@ -144,6 +147,7 @@ public class MainMenuSelector : MonoBehaviour
     public void NewGameButton()
     {
         selector = 0;
+        GameplayController.life = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene("LevelOne");
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Intro");
     }

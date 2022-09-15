@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public static Door current;
     public AudioSource doorSlidingSFX;
+    private bool doorSpriteEnabled;
 
-    private void Awake()
+    private void Start()
     {
-        current = this;
+        doorSpriteEnabled = GetComponentInChildren<SpriteRenderer>().enabled;
+    }
+
+    private void FixedUpdate()
+    {
+        if(GetComponentInChildren<SpriteRenderer>().enabled != doorSpriteEnabled)
+        {
+            doorSlidingSFX.Play();
+            doorSpriteEnabled = GetComponentInChildren<SpriteRenderer>().enabled;
+        }
     }
 }

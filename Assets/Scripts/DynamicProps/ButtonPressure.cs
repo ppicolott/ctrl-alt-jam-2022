@@ -32,8 +32,6 @@ public class ButtonPressure : MonoBehaviour
     }
     public void Pressed()
     {
-        Door.current.doorSlidingSFX.Play();
-
         if (SceneManager.GetActiveScene().name.Equals("LevelThree"))
         {
             GameObject.Find("Door").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
@@ -69,14 +67,10 @@ public class ButtonPressure : MonoBehaviour
             GameObject.Find("Door").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
             GameObject.Find("Door").gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
-
-        Door.current.doorSlidingSFX.Play();
     }
 
     public void PressedByLaser()
     {
-        Door.current.doorSlidingSFX.Play();
-
         if (SceneManager.GetActiveScene().name.Equals("LevelFour"))
         {
             GameObject.Find("ButtonPressure (1)").gameObject.GetComponent<ButtonPressure>().animator.SetBool("Pressed", true);
@@ -109,7 +103,5 @@ public class ButtonPressure : MonoBehaviour
             GameObject.Find("Door").gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
             GameObject.Find("Door").gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
-
-        Door.current.doorSlidingSFX.Play();
     }
 }

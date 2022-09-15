@@ -29,12 +29,11 @@ public class GameOver : MonoBehaviour
 
     void Start()
     {
+        LanguageCheck();
         selector = 0;
     }
-    void Update()
+    void FixedUpdate()
     {
-        LanguageCheck();
-
         if (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame ||
             Gamepad.current != null && Gamepad.current.dpad.up.wasPressedThisFrame)
         {
@@ -82,13 +81,13 @@ public class GameOver : MonoBehaviour
     }
     public void LanguageCheck()
     {
-        if (AudioLangController.current.english)
+        if (GameplayController.english)
         {
             titleText.text = "Game Over";
             tryAgainText.text = "Try again";
             quitText.text = "Back to Main Menu";
         }
-        else if (AudioLangController.current.portuguese)
+        else if (GameplayController.portuguese)
         {
             titleText.text = "Fim de Jogo";
             tryAgainText.text = "Tente novamente";
@@ -97,10 +96,11 @@ public class GameOver : MonoBehaviour
     }
     public void Restart()
     {
-        switch (AudioLangController.current.level)
+        switch (GameplayController.level)
         {
             case 1:
                 SceneManager.LoadScene("LevelOne");
+                GameplayController.life = 1f;
                 break;
             case 2:
                 SceneManager.LoadScene("LevelTwo");
@@ -121,7 +121,7 @@ public class GameOver : MonoBehaviour
     }
     public void ExitToMainMenu()
     {
-        if (AudioLangController.current.audioSystem)
+        if (AudioController.current.audioSystem)
         {
             audioPlaying = true;
         }
@@ -129,7 +129,7 @@ public class GameOver : MonoBehaviour
         {
             audioPlaying = true;
         }
-        AudioLangController.current.restart = true;
+        GameplayController.restart = true;
         SceneManager.LoadScene("MainMenu");
     }
 }

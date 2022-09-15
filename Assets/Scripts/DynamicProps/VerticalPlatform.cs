@@ -17,6 +17,10 @@ public class VerticalPlatform : MonoBehaviour
         {
             speed = 2.5f;
         }
+        else if (SceneManager.GetActiveScene().name.Equals("LevelFour"))
+        {
+            speed = 0.5f;
+        }
         else if (SceneManager.GetActiveScene().name.Equals("LevelFive"))
         {
             speed = 2.5f;

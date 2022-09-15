@@ -39,7 +39,7 @@ public class Intro : MonoBehaviour
 
     private void Update()
     {
-        if(!AudioLangController.current.audioSystem)
+        if(!AudioController.current.audioSystem)
         {
             GetComponent<AudioSource>().mute = true;
         }

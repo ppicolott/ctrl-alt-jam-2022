@@ -25,14 +25,7 @@ public class Victory : MonoBehaviour
     public TextMeshProUGUI victoryText;
     public TextMeshProUGUI quitText;
 
-    private int selector;
-
-    private void Start()
-    {
-        selector = 0;
-    }
-
-    private void Update()
+    private void FixedUpdate()
     {
         CheckLanguage();
 
@@ -46,12 +39,12 @@ public class Victory : MonoBehaviour
 
     private void CheckLanguage()
     {
-        if (AudioLangController.current.english)
+        if (GameplayController.english)
         {
             victoryText.text = "You win!";
             quitText.text = "Back to Main Menu";
         }
-        if (AudioLangController.current.portuguese)
+        if (GameplayController.portuguese)
         {
             victoryText.text = "Vitória!";
             quitText.text = "Voltar ao Menu Inicial";
@@ -60,7 +53,7 @@ public class Victory : MonoBehaviour
 
     public void ExitToMainMenu()
     {
-        if (AudioLangController.current.audioSystem)
+        if (AudioController.current.audioSystem)
         {
             audioPlaying = true;
         }
@@ -68,7 +61,7 @@ public class Victory : MonoBehaviour
         {
             audioPlaying = true;
         }
-        AudioLangController.current.restart = true;
+        GameplayController.restart = true;
         SceneManager.LoadScene("MainMenu");
     }
 }

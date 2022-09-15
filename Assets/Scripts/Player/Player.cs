@@ -141,22 +141,22 @@ public class Player : MonoBehaviour
             {
                 this.steamParticle.Play();
             }
-            ManagerStates.life += this.growthSpeed * Time.deltaTime;
+            GameplayController.life += this.growthSpeed * Time.deltaTime;
 
-            if(ManagerStates.life >= 1f)
+            if(GameplayController.life >= 1f)
             {
-                ManagerStates.life = 1f;
+                GameplayController.life = 1f;
             }
-            else if(ManagerStates.life <= 0f)
+            else if(GameplayController.life <= 0f)
             {
-                ManagerStates.life = 0f; 
+                GameplayController.life = 0f; 
 			}
         }
         else
         {
             this.steamParticle.Stop();
         }
-        this.transform.localScale = new Vector3((this.transform.localScale.x > 0f ? ManagerStates.life : -ManagerStates.life), ManagerStates.life, 1f); 
+        this.transform.localScale = new Vector3((this.transform.localScale.x > 0f ? GameplayController.life : -GameplayController.life), GameplayController.life, 1f); 
     }
     private void Gravity()
     {
@@ -164,9 +164,9 @@ public class Player : MonoBehaviour
     }
     private void Died()
     {
-        if (ManagerStates.life <= 0f)
+        if (GameplayController.life <= 0f)
         {
-            ManagerStates.life = 1f;
+            GameplayController.life = 1f;
 			SceneManager.LoadScene("GameOver");
         }
     }

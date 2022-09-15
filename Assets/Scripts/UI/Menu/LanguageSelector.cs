@@ -73,15 +73,15 @@ public class LanguageSelector : MonoBehaviour
 
     public void EnglishLanguage()
     {
-        AudioLangController.current.english = true;
-        AudioLangController.current.portuguese = false;
+        GameplayController.english = true;
+        GameplayController.portuguese = false;
         languageCanvas.SetActive(false);
         mainMenuCanvas.SetActive(true);
     }
     public void PortugueseLanguage()
     {
-        AudioLangController.current.english = false;
-        AudioLangController.current.portuguese = true;
+        GameplayController.english = false;
+        GameplayController.portuguese = true;
         languageCanvas.SetActive(false);
         mainMenuCanvas.SetActive(true);
     }

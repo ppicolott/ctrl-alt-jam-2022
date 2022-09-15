@@ -7,7 +7,7 @@ public class Ladder : MonoBehaviour
 {
     private void OnTriggerStay2D(Collider2D collision)
     {
-        switch (AudioLangController.current.level)
+        switch (GameplayController.level)
         {
             case 1:
                 SceneManager.LoadScene("LevelTwo");

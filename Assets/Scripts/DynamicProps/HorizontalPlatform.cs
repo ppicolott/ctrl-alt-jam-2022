@@ -13,14 +13,7 @@ public class HorizontalPlatform : MonoBehaviour
     private void Start()
     {
         damage = Base.damage;
-        if (SceneManager.GetActiveScene().name.Equals("LevelFour"))
-        {
-            speed = 2f;
-        }
-        else
-        {
-            speed = 1f;
-        }
+        speed = 1f;
         GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
     }
     private void FixedUpdate()
@@ -37,8 +30,8 @@ public class HorizontalPlatform : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name.Equals("LevelFour") && gameObject.name.Contains("First"))
         {
-            max = 0.65f;
-            min = -3.5f;
+            max = 0.8f;
+            min = -4.2f;
         }
 
         if (transform.position.x > max)
