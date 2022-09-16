@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private float speed;
     private float growthSpeed;
 
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
     {
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.speed = 3f;
         this.bufferTime = 0.2f;
         this.facingDirection = "Left";
@@ -100,7 +102,7 @@ public class Player : MonoBehaviour
             this.rb.velocity = new Vector2(velocityX, this.rb.velocity.y);
 
             // Virar horizontalmente
-            this.transform.localScale = new Vector3((-horizontal > 0 ? 1 : -1) * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+            this.spriteRenderer.flipX = horizontal > 0;
         }
     }
     private void Jump()

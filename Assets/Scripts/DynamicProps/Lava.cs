@@ -40,7 +40,7 @@ public class Lava : MonoBehaviour
         if (boxColliding)
         {
             yield return new WaitForSeconds(1.8f);
-            if(woodBox.gameObject.transform != null)
+            if(woodBox)
             {
                 woodBox.gameObject.transform.Find("boxExplodingSFX").gameObject.SetActive(true);
             }

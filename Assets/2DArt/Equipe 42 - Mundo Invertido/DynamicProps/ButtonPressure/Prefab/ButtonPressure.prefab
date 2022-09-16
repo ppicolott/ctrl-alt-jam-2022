@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &563340904935434221
 SpriteRenderer:
@@ -159,13 +159,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.04789413, y: 0.00094650127}
-      - {x: -0.07555042, y: -0.011254436}
-      - {x: -0.075814806, y: -0.012040405}
+    - - {x: -0.04497379, y: -0.0041642394}
+      - {x: -0.068513855, y: -0.01252716}
       - {x: -0.11980056, y: -0.03}
       - {x: 0.121701814, y: -0.029728392}
-      - {x: 0.0752716, y: -0.010139162}
-      - {x: 0.047079317, y: 0.0012188703}
+      - {x: 0.07575835, y: -0.012816221}
+      - {x: 0.044889014, y: -0.0041351533}
   m_UseDelaunayMesh: 0
 --- !u!114 &1371915633
 MonoBehaviour:
@@ -179,3 +178,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c86e62c2e027140b6baed934b3a174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  press: 0
+  animator: {fileID: 0}
