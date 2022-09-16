@@ -1457,7 +1457,6 @@ TextureImporter:
       lavaTileset_13: 1066818920
       lavaTileset_7: -115261153
       lavaTileset_2: 730504166
-      lavaTileset_35: -230999075
       lavaTileset_11: 448976773
       lavaTileset_12: 1373731279
       lavaTileset_36: -679412899
@@ -1510,11 +1509,12 @@ TextureImporter:
       lavaTileset_32: 1148982248
       lavaTileset_40: 2044822665
       lavaTileset_6: -1689964574
+      lavaTileset_35: -230999075
       lavaTileset_59: -806554270
-      lavaTileset_25: -571042283
       lavaTileset_55: 294539917
-      lavaTileset_27: 1112635612
+      lavaTileset_25: -571042283
       lavaTileset_1: 317446567
+      lavaTileset_27: 1112635612
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

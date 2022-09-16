@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     {
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
-        this.speed = 18f; // 3f;
+        this.speed = 3f;
         this.bufferTime = 0.2f;
         this.facingDirection = "Left";
         this.availableJumping = true;
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
 
         if (horizontal != 0)
         {
-            velocityX += horizontal * this.speed * 0.01f;
+            velocityX += horizontal * this.speed * 2f * Time.deltaTime;
 
             if (this.rb.velocity.x <= -this.speed || this.rb.velocity.x >= this.speed)
             {
