@@ -10,7 +10,10 @@ public class Ice : MonoBehaviour
     {
         if (collision.collider.gameObject.name.Contains("Player"))
         {
-            HUD.current.damage = damage;
+            if (HUD.current.width < 400)
+            {
+                HUD.current.damage = damage;
+            }
             PlayerSFX.current.healSFX.Play();
         }
     }

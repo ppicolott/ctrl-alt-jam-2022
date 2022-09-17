@@ -9,7 +9,7 @@ public class WoodBox : MonoBehaviour
         if(collision.collider.name.Equals("Player") && transform.position.x != 0)
         {
             WoodBoxSFX.current.boxSlidingSFX.Play();
-            WoodBoxSFX.current.boxSlidingSFX.loop = true;
+            WoodBoxSFX.current.boxSlidingSFX.loop = false;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)

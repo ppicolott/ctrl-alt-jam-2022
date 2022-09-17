@@ -10,7 +10,7 @@ public class HUD : MonoBehaviour
     public static HUD current;
     public Image iceLife;
     public float damage;
-    private float width;
+    public float width;
     private float height;
 
     private void Start()
@@ -58,7 +58,6 @@ public class HUD : MonoBehaviour
         {
             width -= damage;
         }
-
         iceLife.rectTransform.sizeDelta = new Vector2(width * GameplayController.life, height);
     }
 
